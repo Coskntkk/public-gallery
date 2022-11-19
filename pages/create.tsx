@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+// Components
+import Create from '../components/Create/Create';
 
 const CreatePage = () => {
     return (
-        <div>Create Page</div>
+        <Create />
     )
 }
 

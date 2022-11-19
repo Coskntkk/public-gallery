@@ -1,0 +1,41 @@
+.artifact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.artifact__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.artifact__name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.artifact__description {
+    font-size: 16px;
+    margin-bottom: 10px;
+    /* Wrap in quotes */
+    white-space: pre-wrap;
+    font-style: italic;
+}
+
+.artifact__author {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Italic */
+}
+
+.artifact__date {
+    font-size: 16px;
+    margin-bottom: 10px;
+}

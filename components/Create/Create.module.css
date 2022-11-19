@@ -1,0 +1,59 @@
+.create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    height: 100vh;
+    width: 100vw;
+    padding: 1rem;
+}
+
+.canvas {
+    width: 20em;
+    height: 20em;
+    border: 1px solid #d65a31;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+.complete__btn {
+    border: 1px solid #000000;
+    background-color: #d65a31;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: large;
+    cursor: pointer;
+}
+
+.canvas__wrap {
+    position: relative;
+}
+.canvas__overlay {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+}
+
+/* Complete form */
+.complete__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 1rem;
+    margin: 1rem;
+    width: 320px;
+}
+.complete__form__group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.complete__form__input {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: large;
+    resize: none;
+}

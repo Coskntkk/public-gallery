@@ -1,0 +1,6 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4%;
+    padding-bottom: 10%;
+}

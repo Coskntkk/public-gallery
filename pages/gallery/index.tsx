@@ -1,8 +1,10 @@
 import React from 'react'
+// Components
+import Gallery from '../../components/Gallery/Gallery';
 
 const GalleryPage: React.FC = () => {
     return (
-        <div>Gallery Page</div>
+        <Gallery />
     )
 }
 

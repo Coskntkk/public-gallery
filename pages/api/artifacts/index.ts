@@ -61,7 +61,7 @@ const createArtifact = async (
     // Convert the buffer to a png/jpg file and save it on the server
     const file = req.body.image
     const fileName = createdItem._id + '.png'
-    const filePath = path.join(process.cwd(), 'public', 'images', fileName)
+    const filePath = path.join(process.cwd(), 'images', fileName)
     const base64Data = file.replace(/^data:([A-Za-z-+/]+);base64,/, '')
     fs.writeFileSync(filePath, base64Data, { encoding: 'base64' });
     res.status(200).json({ success: true, message: 'Image uploaded successfully', data: createdItem._id });

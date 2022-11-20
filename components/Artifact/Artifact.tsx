@@ -10,6 +10,7 @@ type ArtifactProps = {
 const Artifact = ({ artifact }: ArtifactProps) => {
     return (
         <div className={styles.artifact}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`/images/${artifact.id}.png`} alt="[artifact]" width={320} height={320} className={styles.artifact__image} />
             <div className={styles.artifact__info}>
                 <h1 className={styles.artifact__name}>{artifact.name}</h1>

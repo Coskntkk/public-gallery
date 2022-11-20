@@ -45,7 +45,7 @@ const Create = () => {
                 let itemId = res.data;
                 let url = "/gallery/" + itemId;
                 setRedirectUrl(url);
-                let text = 'I just created an artifact on Public Gallery! Check it out! #publicgallery https://public-gallery.vercel.app/gallery/' + itemId + ' ' + image;
+                let text = 'I just created an artifact on Public Gallery! Check it out! #publicgallery https://100px-gallery.vercel.app/gallery/' + itemId + ' ' + image;
                 console.log(text);
                 setTweetText(text);
                 setIsModalOpen(true);

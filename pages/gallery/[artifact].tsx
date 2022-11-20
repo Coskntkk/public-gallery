@@ -1,44 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 // Components
-import Artifact from '../../components/Artifact/Artifact';
+import ArtifactPage from '../../components/ArtifactPage/ArtifactPage';
 // Services
 import ArtifactService from '../../services/ArtifactService';
 // Types
-type ArtifactData = { id: string, name: string, author: string, description: string }
+import type ArtifactType from '../../@types/artifact';
 
-const ArtifactPage = () => {
+const ArtifactPageId = () => {
     // Hooks
     const router = useRouter();
-    const { artifact } = router.query;
+    const artifactId = router.query.artifact;
     // States
-    const [artifactData, setArtifactData] = useState<ArtifactData>({ id: '', name: '', author: '', description: '' });
+    const [artifactData, setArtifactData] = useState<ArtifactType>({ id: '', name: '', author: '', description: '', createdAt: '' });
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const getArtifact = async () => {
-        ArtifactService.getArtifact(artifact)
+    // Effects
+    const getArtifact = async (id: string) => {
+        ArtifactService.getArtifact(artifactId as string)
             .then((res) => {
                 console.log(res);
                 if (res.success) {
-                    console.log(res.data);
-                    setArtifactData(res.data);
+                    let item = res.data as ArtifactType;
+                    setArtifactData(item);
+                    setIsLoading(false);
                 } else {
                     router.push('/404');
                 }
             })
             .catch((err) => {
                 console.log(err);
-            });
+                router.push('/404');
+            })
     };
-
     useEffect(() => {
-        if (artifact !== undefined) {
-            getArtifact();
-        }
-    }, [artifact]);
+        if (!artifactId) return;
+        getArtifact(artifactId as string);
+    }, [artifactId]);
 
     return (
-        <Artifact artifact={artifactData} />
+        isLoading ? (
+            <div>Loading...</div>
+        ) : (
+            <ArtifactPage artifact={artifactData} />
+        )
     )
 }
 
-export default ArtifactPage;
+export default ArtifactPageId;

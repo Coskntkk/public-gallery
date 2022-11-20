@@ -1,0 +1,46 @@
+/* Complete form */
+.complete__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 1rem;
+    margin: 1rem;
+    width: 320px;
+    padding-bottom: 1rem;
+}
+.image {
+    width: 25%;
+    object-fit: cover;
+}
+.complete__form__group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.complete__form__input {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: large;
+    resize: none;
+}
+
+@media screen and (max-width: 768px) {
+    .image {
+        width: 50%;
+    }
+    .complete__form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image {
+        width: 95%;
+    }
+    .complete__form {
+        width: 95%;
+    }
+}

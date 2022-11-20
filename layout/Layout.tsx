@@ -15,9 +15,9 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <>
             <Navbar />
-            <main className={styles.main}>
+            <div className={styles.main}>
                 {children}
-            </main>
+            </div>
             <Footer />
         </>
     )

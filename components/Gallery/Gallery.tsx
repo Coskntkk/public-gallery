@@ -7,14 +7,17 @@ import ArtifactService from '../../services/ArtifactService';
 import Artifact from '../Artifact/Artifact';
 import Link from 'next/link';
 // Types
-type ArtifactData = { id: string, name: string, author: string, description: string, createdAt: string }
+import type ArtifactType from '../../@types/artifact';
 
 const Gallery = () => {
-    const [artifacts, setArtifacts] = useState<ArtifactData[]>([]);
+    // States
+    const [artifacts, setArtifacts] = useState<ArtifactType[]>([]);
+    // Effects
     const getArtifacts = async () => {
-        ArtifactService.getArtifacts()
+        ArtifactService.getAllArtifacts()
             .then((res) => {
-                setArtifacts(res.data);
+                const items = res.data as ArtifactType[];
+                setArtifacts(items);
             })
             .catch((err) => {
                 console.log(err);
@@ -23,15 +26,18 @@ const Gallery = () => {
     useEffect(() => {
         getArtifacts();
     }, []);
+
     return (
         <div className={styles.gallery}>
             <h1>Gallery</h1>
             <div className={styles.gallery__container}>
                 {artifacts.map((artifact) => (
                     <div className={styles.gallery__artifact} key={artifact.id}>
-                        <Link href={`/gallery/${artifact.id}`}>
-                            <Artifact artifact={artifact} />
-                        </Link>
+                        <div className={styles.gallery__artifact__container}>
+                            <Link href={`/gallery/${artifact.id}`}>
+                                <Artifact artifact={artifact} />
+                            </Link>
+                        </div>
                     </div>
                 ))}
             </div>

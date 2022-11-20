@@ -1,0 +1,19 @@
+.artifactPage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+    margin: 3rem auto;
+}
+
+@media screen and (max-width: 768px) {
+    .artifactPage {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .artifactPage {
+        width: 90%;
+    }
+}

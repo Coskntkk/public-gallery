@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Create/Create.jsx", "services/UploadService.js", "services/Service.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Create/Create.tsx", "services/UploadService.js"],
   "exclude": ["node_modules", "**/*.js", "**/*.jsx"]
 }

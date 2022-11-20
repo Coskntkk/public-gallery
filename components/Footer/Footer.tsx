@@ -8,6 +8,7 @@ const Footer = () => {
             <div className={styles.footer__links}>
                 2022 @dimaetor
                 <a href="https://github.com/Coskntkk">Github</a>
+                <a href="https://github.com/Coskntkk/public-gallery">Repository</a>
                 <a href="https://twitter.com/dimaetor">Twitter</a>
             </div>
         </div>

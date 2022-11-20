@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // Styles
 import styles from './Artifact.module.css';
 // Types
@@ -8,10 +8,14 @@ type ArtifactProps = {
 }
 
 const Artifact = ({ artifact }: ArtifactProps) => {
+    // Effects
+    useEffect(() => {
+        console.log(artifact.image);
+    }, []);
     return (
         <div className={styles.artifact}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/images/${artifact.id}.png`} alt="[artifact]" width={320} height={320} className={styles.artifact__image} />
+            <img src={artifact.image} alt="[artifact]" width={320} height={320} className={styles.artifact__image} />
             <div className={styles.artifact__info}>
                 <h1 className={styles.artifact__name}>{artifact.name}</h1>
                 <p className={styles.artifact__description}>

@@ -14,7 +14,10 @@ const artifactSchema = new Schema({
     },
     description: {
         type: String,
-    }
+    },
+    image: {
+        type: String,
+    },
 });
 
 

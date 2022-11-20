@@ -38,6 +38,7 @@ const getArtifact = async (
             description: artifact.description,
             author: artifact.author,
             createdAt: artifact.createdAt,
+            image: artifact.image
         }
         res.status(200).json({ success: true, message: 'Artifact found', data: data });
     } catch (error: any) {

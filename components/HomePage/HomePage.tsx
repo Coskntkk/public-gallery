@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 // Styles
 import styles from './HomePage.module.css';
 // Components

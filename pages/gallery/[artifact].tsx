@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 // Components
 import ArtifactPage from '../../components/ArtifactPage/ArtifactPage';
-// Services
-import ArtifactService from '../../services/ArtifactService';
 // Types
 import type ArtifactType from '../../@types/artifact';
+// Services
+import ArtifactService from '../../services/ArtifactService';
 
 const ArtifactPageId = () => {
     // Hooks

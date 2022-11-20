@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 // Styles
 import styles from './Gallery.module.css';
-// Services
-import ArtifactService from '../../services/ArtifactService';
 // Components
 import Artifact from '../Artifact/Artifact';
 import Link from 'next/link';
 // Types
 import type ArtifactType from '../../@types/artifact';
+// Services
+import ArtifactService from '../../services/ArtifactService';
 
 const Gallery = () => {
     // States

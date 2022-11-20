@@ -1,9 +1,9 @@
 import React, { useContext} from 'react';
-// Styles
-import stles from './Navbar.module.css';
 // Next
 import Link from 'next/link';
 import Image from 'next/image';
+// Styles
+import stles from './Navbar.module.css';
 
 const Navbar = () => {
     return (

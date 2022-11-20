@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 // Styles
-import styles from './Pixel.module.css'
+import styles from './Pixel.module.css';
 // Types
 type PixelProps = {
     currentColor: string,
@@ -29,7 +29,7 @@ const Pixel = ({ currentColor, pixel, pixels, setPixels, index, isCreating }: Pi
     return (
         <div
             className={styles.pixel}
-            style={{ backgroundColor: pixel,/* border: isCreating ? '1px solid lightgray' : 'none' */ }}
+            style={{ backgroundColor: pixel }}
             onMouseDown={handlePixelClick}
             onMouseEnter={checkIfMouseDown}
         />

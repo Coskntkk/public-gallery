@@ -1,10 +1,10 @@
 import React from 'react';
 // Stles
 import styles from './ArtifactPage.module.css';
-// Types
-import type ArtifactType from '../../@types/artifact'
 // Components
-import Artifact from '../Artifact/Artifact'
+import Artifact from '../Artifact/Artifact';
+// Types
+import type ArtifactType from '../../@types/artifact';
 
 const ArtifactPage = ({ artifact }: { artifact: ArtifactType }) => {
     return (

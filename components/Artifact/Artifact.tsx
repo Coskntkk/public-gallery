@@ -2,8 +2,9 @@ import React from 'react';
 // Styles
 import styles from './Artifact.module.css';
 // Types
+import type ArtifactType from '../../@types/artifact';
 type ArtifactProps = {
-    artifact: { id: string, name: string, author: string, description: string, createdAt: string }
+    artifact: ArtifactType
 }
 
 const Artifact = ({ artifact }: ArtifactProps) => {

@@ -61,8 +61,9 @@ const Create = () => {
         setForm({ name: '', description: '', author: '' });
     };
     return (
-        !isModalOpen ?
-            <div className={styles.create}>
+        !isModalOpen
+            ? <div className={styles.create}>
+                {/* Drawing section  */}
                 {isCreating && (
                     <>
                         <div className={styles.canvas} ref={ref}>
@@ -76,45 +77,44 @@ const Create = () => {
                         </div>
                     </>
                 )}
-                {!isCreating && (
-                    <>
-                        <img src={image} alt={"ScreenShot"} className={stylesShow.image} />
-                        <form className={stylesShow.complete__form} onSubmit={handleFinish}>
-                            <div className={stylesShow.complete__form__group}>
-                                <label htmlFor="name">What is the name of your art? (optional)</label>
-                                <input
-                                    type="text"
-                                    value={form.name}
-                                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                                    className={stylesShow.complete__form__input}
-                                />
-                            </div>
-                            <div className={stylesShow.complete__form__group}>
-                                <label htmlFor="description">Describe your art (optional)</label>
-                                <textarea
-                                    type="text"
-                                    value={form.description}
-                                    onChange={(e) => setForm({ ...form, description: e.target.value })}
-                                    className={stylesShow.complete__form__input}
-                                    rows={4}
-                                    maxLength={200}
-                                />
-                            </div>
-                            <div className={stylesShow.complete__form__group}>
-                                <label htmlFor="author">Who are you? (optional)</label>
-                                <input
-                                    type="text" value={form.author}
-                                    onChange={(e) => setForm({ ...form, author: e.target.value })}
-                                    className={stylesShow.complete__form__input}
-                                />
-                            </div>
-                            <button className={styles.complete__btn} type="submit">Post</button>
-                        </form>
-                    </>
-                )}
+                {/* Show and form section  */}
+                {!isCreating && (<>
+                    <img src={image} alt={"ScreenShot"} className={stylesShow.image} />
+                    <form className={stylesShow.complete__form} onSubmit={handleFinish}>
+                        <div className={stylesShow.complete__form__group}>
+                            <label htmlFor="name">What is the name of your art? (optional)</label>
+                            <input
+                                type="text"
+                                value={form.name}
+                                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                                className={stylesShow.complete__form__input}
+                            />
+                        </div>
+                        <div className={stylesShow.complete__form__group}>
+                            <label htmlFor="description">Describe your art (optional)</label>
+                            <textarea
+                                type="text"
+                                value={form.description}
+                                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                                className={stylesShow.complete__form__input}
+                                rows={4}
+                                maxLength={200}
+                            />
+                        </div>
+                        <div className={stylesShow.complete__form__group}>
+                            <label htmlFor="author">Who are you? (optional)</label>
+                            <input
+                                type="text" value={form.author}
+                                onChange={(e) => setForm({ ...form, author: e.target.value })}
+                                className={stylesShow.complete__form__input}
+                            />
+                        </div>
+                        <button className={styles.complete__btn} type="submit">Post</button>
+                    </form>
+                </>)}
             </div>
-            :
-            <div className={stylesFinal.final}>
+            : <div className={stylesFinal.final}>
+                {/* Final section */}
                 <div className={stylesFinal.final__content}>
                     <h1 className={stylesFinal.final__content__title}>Congratulations!</h1>
                     <img src={image} alt={"ScreenShot"} className={stylesFinal.final__image} />
@@ -124,10 +124,10 @@ const Create = () => {
                         <button className={stylesFinal.final__btn} onClick={() => router.push('/gallery')}>Explore Gallery</button>
                         <button className={stylesFinal.final__btn} onClick={resetCreateHandler}>Create Another</button>
                         <br />
-                        <a 
-                            className={stylesFinal.final__tweet__btn} 
-                            href={"https://twitter.com/intent/tweet?text=" + tweetText} 
-                            target="_blank" 
+                        <a
+                            className={stylesFinal.final__tweet__btn}
+                            href={"https://twitter.com/intent/tweet?text=" + tweetText}
+                            target="_blank"
                             rel="noreferrer"
                             data-size="large"
                             data-hashtags="publicgallery"

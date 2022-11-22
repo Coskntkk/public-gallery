@@ -28,7 +28,7 @@ const Gallery = () => {
                 const items = res.data as ArtifactType[];
                 let totalItems = res.total as number;
                 setArtifacts(items);
-                setTotalPages(Math.ceil(totalItems / 10));
+                setTotalPages(Math.ceil(totalItems / 8));
             })
             .catch((error) => {
                 console.log(error);

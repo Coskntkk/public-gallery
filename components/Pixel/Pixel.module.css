@@ -2,7 +2,6 @@
     width: 2em;
     height: 2em;
     float: left;
-    /* border: 1px solid lightgray; TODO: use a variable */
     background-color: #fff;
     cursor: pointer;
 }

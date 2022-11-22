@@ -19,7 +19,6 @@ const ArtifactPageId = () => {
     const getArtifact = async (id: string) => {
         ArtifactService.getArtifact(artifactId as string)
             .then((res) => {
-                console.log(res);
                 if (res.success) {
                     let item = res.data as ArtifactType;
                     setArtifactData(item);
@@ -28,8 +27,8 @@ const ArtifactPageId = () => {
                     router.push('/404');
                 }
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
                 router.push('/404');
             })
     };

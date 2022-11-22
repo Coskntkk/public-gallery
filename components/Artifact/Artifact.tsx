@@ -8,10 +8,7 @@ type ArtifactProps = {
 }
 
 const Artifact = ({ artifact }: ArtifactProps) => {
-    // Effects
-    useEffect(() => {
-        console.log(artifact.image);
-    }, []);
+    
     return (
         <div className={styles.artifact}>
             {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -10,13 +10,15 @@ type CreateArtifactParams = {
 type ArtifactResponse = {
     success: boolean;
     message: string;
-    data: ArtifactType | ArtifactType[] | null;
+    data: ArtifactType | ArtifactType[] | { total: number; items: ArtifactType[] };
+    total?: number;
 };
 
 class ArtifactService {
-    async getAllArtifacts(): Promise<ArtifactResponse> {
+    async getAllArtifacts( { page = 1, keyword = '' } = {} ): Promise<ArtifactResponse> {
         try {
-            let response = await Service.get("/artifacts");
+            let query = `?page=${page}&limit=8` + (keyword ? `&keyword=${keyword}` : '');
+            let response = await Service.get("/artifacts" + query);
             let data = response.data as ArtifactResponse;
             return data;
         } catch (error: any) {

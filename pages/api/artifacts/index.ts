@@ -41,9 +41,9 @@ const getArtifacts = async (
                 { description: { $regex: keyword, $options: 'i' } }, 
                 { author: { $regex: keyword, $options: 'i' } }
             ] })
+            .sort({ createdAt: -1 })
             .skip(skip)
-            .limit(limit)
-            .sort({ createdAt: -1 });
+            .limit(limit);
         let totalItems = await Artifact.countDocuments();
         let dataItems = artifacts.map((artifact) => {
             return {

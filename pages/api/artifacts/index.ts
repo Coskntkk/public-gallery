@@ -2,12 +2,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connectMongo from '../../../utils/connectMongo';
 import Artifact from '../../../models/artifact';
-import path from 'path'
-import fs from 'fs'
 type Data = {
     success: boolean,
     message: string,
-    data: any
+    data: any,
+    total?: number
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
@@ -30,8 +29,22 @@ const getArtifacts = async (
     res: NextApiResponse<Data>
 ) => {
     try {
-        const artifacts = await Artifact.find();
-        let data = artifacts.map((artifact) => {
+        // Qurey params
+        let keyword = req.query.keyword || '';
+        let page = req.query.page ? parseInt(req.query.page as string) : 1;
+        let limit = req.query.limit ? parseInt(req.query.limit as string) : 8;
+        let skip = (page - 1) * limit;
+        // Query
+        let artifacts = await Artifact.find(
+            { $or: [
+                { name: { $regex: keyword, $options: 'i' } }, 
+                { description: { $regex: keyword, $options: 'i' } }, 
+                { author: { $regex: keyword, $options: 'i' } }
+            ] })
+            .skip(skip)
+            .limit(limit);
+        let totalItems = await Artifact.countDocuments();
+        let dataItems = artifacts.map((artifact) => {
             return {
                 id: artifact._id,
                 name: artifact.name,
@@ -41,7 +54,7 @@ const getArtifacts = async (
                 image: artifact.image
             }
         });
-        res.status(200).json({ success: true, message: 'Artifacts found', data: data });
+        res.status(200).json({ success: true, message: 'Artifacts found', data: dataItems, total: totalItems });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message, data: null });
     }
@@ -53,7 +66,6 @@ const createArtifact = async (
 ) => {
     try {
         // Create a model with the image
-        console.log(req.body.image)
         let newItem = {
             name: req.body.name,
             description: req.body.description,

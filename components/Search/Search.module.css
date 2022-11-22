@@ -1,0 +1,7 @@
+.search__button, .search__input {
+    background-color: #222831;
+    color: #eeeeee;
+    margin: 1rem 1rem 0;
+    border: 1px solid #D65A31;
+    padding: .25rem;
+}

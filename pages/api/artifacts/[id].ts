@@ -27,7 +27,6 @@ const getArtifact = async (
     try {
         // Create a model with the image
         let id = req.query.id
-        console.log(id)
         const artifact = await Artifact.findById(id);
         if (!artifact) {
             res.status(400).json({ success: false, message: 'No artifact found', data: null });

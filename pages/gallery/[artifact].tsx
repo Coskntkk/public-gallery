@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 // Components
 import ArtifactPage from '../../components/ArtifactPage/ArtifactPage';
+import Loading from '../../components/Loading/Loading';
 // Types
 import type ArtifactType from '../../@types/artifact';
 // Services
@@ -39,7 +40,7 @@ const ArtifactPageId = () => {
 
     return (
         isLoading ? (
-            <div>Loading...</div>
+            <Loading />
         ) : (
             <ArtifactPage artifact={artifactData} />
         )

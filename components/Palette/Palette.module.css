@@ -33,6 +33,11 @@
 .palette__input {    
     height: 3rem;
 }
+.palette__custom__color {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
 
 .palette__tools {
     display: flex;

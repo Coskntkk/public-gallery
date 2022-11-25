@@ -36,6 +36,7 @@ const ArtifactPageId = () => {
     useEffect(() => {
         if (!artifactId) return;
         getArtifact(artifactId as string);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [artifactId]);
 
     return (

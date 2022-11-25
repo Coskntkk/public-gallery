@@ -1,4 +1,18 @@
-/* Complete form */
+.preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+}
+
+.image {
+    width: 25%;
+    object-fit: cover;
+}
+
 .complete__form {
     display: flex;
     flex-direction: column;
@@ -10,21 +24,29 @@
     width: 320px;
     padding-bottom: 1rem;
 }
-.image {
-    width: 25%;
-    object-fit: cover;
-}
+
 .complete__form__group {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 .complete__form__input {
     border: 1px solid #000000;
     border-radius: 4px;
     padding: 0.5rem;
     font-size: large;
     resize: none;
+}
+
+.complete__btn {
+    border: 1px solid #000000;
+    background-color: #d65a31;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: large;
+    cursor: pointer;
+    width: max-content;
 }
 
 @media screen and (max-width: 768px) {

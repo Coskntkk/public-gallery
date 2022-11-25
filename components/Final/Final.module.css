@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    width: 100%;
+    width: 20%;
     margin: 0 auto;
     text-align: center;
 }
@@ -38,21 +38,18 @@
     padding: .5rem;
     font-size: large;
     cursor: pointer;
-    width: 100%;
-    margin-top: 2rem;
+    width: fit-content;
 }
 
 @media screen and (max-width: 768px) {
     .final {
-        width: 100%;
-    }
-    .final__image {
-        width: 100%;
+        width: 50%;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .final__image {
-        width: 100%;
+    .final {
+        width: 90%;
+        padding-bottom: 3rem;
     }
 }

@@ -13,21 +13,32 @@ const Palette = ({ setCurrentColor, setPixels }: PaletteProps) => {
     // States
     const [colors, setColors] = useState<string[]>([
         '#000000',
+        '#9d9d9d',
         '#ffffff',
-        '#ff0000',
-        '#00ff00',
-        '#0000ff',
-        '#ffff00',
-        '#00ffff',
-        '#ff00ff',
-        '#ff8000',
-        '#8000ff',
-        '#0080ff',
-        '#ff0080',
+        '#be2633',
+        '#e06f8b',
+        '#493c2b',
+        '#a46422',
+        '#eb8931',
+        '#f7e26b',
+        '#2f484e',
+        '#44891a',
+        '#a3ce27',
+        '#1b2632',
+        '#005784',
+        '#31a2f2',
+        '#b2dcef',
     ]);
+    const [customColor, setCustomColor] = useState<string>('#ffffff');
+    // Handlers
     const handleColorClick = (color: string) => {
         setCurrentColor(color);
     }
+    const handleAddCustomColor = (color: string) => {
+        setCurrentColor(color);
+        setCustomColor(color);
+    };
+
     return (
         <div className={styles.palette}>
             <div className={styles.colors}>
@@ -38,7 +49,10 @@ const Palette = ({ setCurrentColor, setPixels }: PaletteProps) => {
             <div className={styles.palette__tools}>
                 <div className={styles.palette__custom}>
                     Custom Color
-                    <input type="color" onChange={(e) => handleColorClick(e.target.value)} className={styles.palette__input} />
+                    <div className={styles.palette__custom__color}>
+                        <input type="color" onChange={(e) => handleAddCustomColor(e.target.value)} className={styles.palette__input} />
+                        <ColorButton color={customColor} onClick={() => handleColorClick(customColor)} />
+                    </div>
                 </div>
                 <div className={styles.palette__custom}>
                     Tools

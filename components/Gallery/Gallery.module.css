@@ -7,6 +7,13 @@
     height: 100%;
 }
 
+.gallery__container__count {
+    margin-top: 1em;
+}
+.orange {
+    color: #d65a31;
+    font-weight: bold;
+}
 .gallery__container {
     width: 100%;
     justify-content: center;

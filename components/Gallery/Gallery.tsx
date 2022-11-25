@@ -17,6 +17,7 @@ const Gallery = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(0);
+    const [numberOfArtifacts, setNumberOfArtifacts] = useState<number>(0);
     const [keyword, setKeyword] = useState<string>('');
     const [refresh, setRefresh] = useState<boolean>(false);
     const [artifacts, setArtifacts] = useState<ArtifactType[]>([]);
@@ -27,6 +28,7 @@ const Gallery = () => {
             .then((res) => {
                 const items = res.data as ArtifactType[];
                 let totalItems = res.total as number;
+                setNumberOfArtifacts(totalItems);
                 setArtifacts(items);
                 setTotalPages(Math.ceil(totalItems / 8));
             })
@@ -48,7 +50,10 @@ const Gallery = () => {
             <div className={styles.gallery}>
                 <h1>Gallery</h1>
                 <div className={styles.gallery__container}>
-                    <Search keyword={keyword} setKeyword={setKeyword} refresh={refresh} setRefresh={setRefresh} />
+                    <div className={styles.gallery__info}>
+                        <Search keyword={keyword} setKeyword={setKeyword} refresh={refresh} setRefresh={setRefresh} />
+                        <p className={styles.gallery__container__count}><span className={styles.orange}>{numberOfArtifacts}</span> item/s found</p>
+                    </div>
                     {/* if artifacts is empty */}
                     {artifacts.length === 0 ?
                         <div className={styles.gallery__empty}>

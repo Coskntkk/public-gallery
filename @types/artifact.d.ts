@@ -5,7 +5,7 @@ type ArtifactType = {
     description: string;
     author: string;
     createdAt: string;
-    image: string;
+    url: string;
 };
 
 // Export Artifact type

@@ -54,23 +54,25 @@ const Gallery = () => {
                         <Search keyword={keyword} setKeyword={setKeyword} refresh={refresh} setRefresh={setRefresh} />
                         <p className={styles.gallery__container__count}><span className={styles.orange}>{numberOfArtifacts}</span> item/s found</p>
                     </div>
-                    {/* if artifacts is empty */}
-                    {artifacts.length === 0 ?
-                        <div className={styles.gallery__empty}>
-                            <h2>No artifacts found</h2>
-                            <Link href="/create" className={styles.gallery__empty__link}>
-                                Create one
-                            </Link>
-                        </div> :
-                        artifacts.map((artifact) => (
-                            <div className={styles.gallery__artifact} key={artifact.id}>
-                                <div className={styles.gallery__artifact__container}>
-                                    <Link href={`/gallery/${artifact.id}`}>
-                                        <Artifact artifact={artifact} />
-                                    </Link>
+                    <div className={styles.gallery__frame}>
+                        {/* if artifacts is empty */}
+                        {artifacts.length === 0 ?
+                            <div className={styles.gallery__empty}>
+                                <h2>No artifacts found</h2>
+                                <Link href="/create" className={styles.gallery__empty__link}>
+                                    Create one
+                                </Link>
+                            </div> :
+                            artifacts.map((artifact) => (
+                                <div className={styles.gallery__artifact} key={artifact.id}>
+                                    <div className={styles.gallery__artifact__container}>
+                                        <Link href={`/gallery/${artifact.id}`}>
+                                            <Artifact artifact={artifact} />
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                    </div>
                     <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
                 </div>
             </div>

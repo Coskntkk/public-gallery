@@ -20,7 +20,13 @@
     box-sizing: border-box;
     padding-bottom: 2rem;
 }
-
+.gallery__frame {
+    width: 100%;
+    display: -ms-grid;
+    grid-auto-columns: max-content; 
+    box-sizing: border-box;
+    grid-gap: 10px;
+}
 .gallery__artifact {
     display: inline-block;
     align-items: center;
@@ -28,6 +34,7 @@
     width: 25%;
     text-align: center;
     padding: 20px;
+    height: 65vh;
 }
 
 .gallery__artifact__container {
@@ -76,6 +83,7 @@
     }
     .gallery__artifact {
         width: 100%;
+        height: 75vh;
     }
     .gallery__artifact__container {
         padding: 1rem;

@@ -36,19 +36,23 @@ const getArtifacts = async (
         let skip = (page - 1) * limit;
         // Query
         let artifacts = await Artifact.find(
-            { $or: [
-                { name: { $regex: keyword, $options: 'i' } }, 
-                { description: { $regex: keyword, $options: 'i' } }, 
-                { author: { $regex: keyword, $options: 'i' } }
-            ] })
+            {
+                $or: [
+                    { name: { $regex: keyword, $options: 'i' } },
+                    { description: { $regex: keyword, $options: 'i' } },
+                    { author: { $regex: keyword, $options: 'i' } }
+                ]
+            })
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
-        let totalItems = await Artifact.countDocuments( { $or: [
-            { name: { $regex: keyword, $options: 'i' } },
-            { description: { $regex: keyword, $options: 'i' } },
-            { author: { $regex: keyword, $options: 'i' } }
-        ] });
+        let totalItems = await Artifact.countDocuments({
+            $or: [
+                { name: { $regex: keyword, $options: 'i' } },
+                { description: { $regex: keyword, $options: 'i' } },
+                { author: { $regex: keyword, $options: 'i' } }
+            ]
+        });
         let dataItems = artifacts.map((artifact) => {
             return {
                 id: artifact._id,
@@ -56,7 +60,7 @@ const getArtifacts = async (
                 description: artifact.description,
                 author: artifact.author,
                 createdAt: artifact.createdAt,
-                image: artifact.image
+                url: artifact.url,
             }
         });
         res.status(200).json({ success: true, message: 'Artifacts found', data: dataItems, total: totalItems });
@@ -69,17 +73,37 @@ const createArtifact = async (
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) => {
-    try {
-        // Create a model with the image
-        let newItem = {
-            name: req.body.name,
-            description: req.body.description,
-            author: req.body.author,
-            image: req.body.image
-        }
-        let createdItem = await Artifact.create(newItem)
-        res.status(200).json({ success: true, message: 'Image uploaded successfully', data: createdItem._id });
-    } catch (error: any) {
-        res.status(500).json({ success: false, message: error.message, data: null });
+    // try {
+    // Create a model with the image
+    let newItem = {
+        name: req.body.name,
+        description: req.body.description,
+        author: req.body.author,
+        url: ""
     }
+    console.log(req.body.image.split(",")[1]);
+    console.log("---");
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Client-ID ${process.env.MONGO_URI as string}`);
+    var formdata = new FormData();
+    formdata.append("image", `"${req.body.image.split(",")[1]}"`);
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+    };
+
+    fetch("https://api.imgur.com/3/image", requestOptions as any)
+        .then(response => response.json())
+        .then(async result => {
+            newItem.url = result.data.link
+            let createdItem = await Artifact.create(newItem)
+            res.status(200).json({ success: true, message: 'Image uploaded successfully', data: createdItem._id });
+        })
+        .catch((error: any) => {
+            console.log('error', error)
+            res.status(200).json({ success: true, message: 'Image uploaded successfully', data: error.toJSON() });
+        });
 }

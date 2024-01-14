@@ -13,7 +13,7 @@ const ArtifactPageId = () => {
     const router = useRouter();
     const artifactId = router.query.artifact;
     // States
-    const [artifactData, setArtifactData] = useState<ArtifactType>({ id: '', name: '', author: '', description: '', createdAt: '', image: '' });
+    const [artifactData, setArtifactData] = useState<ArtifactType>({ id: '', name: '', author: '', description: '', createdAt: '', url: '' });
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     // Effects

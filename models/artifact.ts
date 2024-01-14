@@ -18,6 +18,9 @@ const artifactSchema = new Schema({
     image: {
         type: String,
     },
+    url: {
+        type: String,
+    },
 });
 
 

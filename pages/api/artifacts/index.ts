@@ -81,11 +81,9 @@ const createArtifact = async (
         author: req.body.author,
         url: ""
     }
-    console.log(req.body.image.split(",")[1]);
-    console.log("---");
 
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", `Client-ID ${process.env.MONGO_URI as string}`);
+    myHeaders.append("Authorization", `Client-ID ${process.env.CLIENT_ID as string}`);
     var formdata = new FormData();
     formdata.append("image", `"${req.body.image.split(",")[1]}"`);
     var requestOptions = {

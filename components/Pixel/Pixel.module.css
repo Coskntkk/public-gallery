@@ -1,7 +1,10 @@
 .pixel {
-    width: 2em;
-    height: 2em;
+    width: 1.25em;
+    height: 1.25em;
     float: left;
     background-color: #fff;
     cursor: pointer;
+    box-sizing: border-box;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }

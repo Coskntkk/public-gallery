@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react'
+import React, { useState, createRef, useEffect } from 'react'
 import html2canvas from 'html2canvas';
 // Styles
 import styles from './Create.module.css';
@@ -13,7 +13,7 @@ import ArtifactService from '../../services/ArtifactService';
 
 const Create = () => {
     // Hooks
-    const ref = createRef();
+    const ref: any = createRef();
     // States
     const [loading, setLoading] = useState<boolean>(false);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -23,11 +23,14 @@ const Create = () => {
     const [currentColor, setCurrentColor] = useState<string>('#000000');
     const [redirectUrl, setRedirectUrl] = useState<string>('');
     const [form, setForm] = useState<{ name: string; description: string; author: string; }>({ name: '', description: '', author: '' });
-    const [pixels, setPixels] = useState<string[]>(new Array(100).fill('#ffffff'));
+    const [pixels, setPixels] = useState<string[]>(new Array(256).fill('#ffffff'));
     // Handlers
     const handleComplete = () => {
         setLoading(true);
         setIsCreating(false);
+        for (let item of ref.current.children as any) {
+            item.style.border = "none"
+        }
         html2canvas(ref.current as HTMLElement, {}).then((canvas) => {
             setImage(canvas.toDataURL());
             setLoading(false);
@@ -63,6 +66,7 @@ const Create = () => {
         setPixels(new Array(100).fill('#ffffff'));
         setForm({ name: '', description: '', author: '' });
     };
+
     return (
         loading ? <Loading /> :
             !isModalOpen
@@ -71,14 +75,40 @@ const Create = () => {
                     <div className={styles.create}>
                         <div className={styles.canvas} ref={ref as any}>
                             {pixels.map((pixel, index) => (
-                                <Pixel key={index} currentColor={currentColor} pixel={pixel} pixels={pixels} setPixels={setPixels} index={index} isCreating={isCreating} />
+                                <Pixel
+                                    key={index}
+                                    currentColor={currentColor}
+                                    pixel={pixel}
+                                    pixels={pixels}
+                                    setPixels={setPixels}
+                                    index={index}
+                                    isCreating={isCreating}
+                                />
                             ))}
                         </div>
-                        <Palette setCurrentColor={setCurrentColor} setPixels={setPixels} />
-                        <button className={styles.complete__btn} onClick={handleComplete}>Complete</button>
+                        <Palette
+                            setCurrentColor={setCurrentColor}
+                            setPixels={setPixels}
+                        />
+                        <button
+                            className={styles.complete__btn}
+                            onClick={handleComplete}
+                        >
+                            Complete
+                        </button>
                     </div>
-                ) : <Preview image={image!} form={form} setForm={setForm} handleFinish={handleFinish} />)
-                : <Final image={image!} imageId={imageId!} redirectUrl={redirectUrl} resetCreateHandler={resetCreateHandler} />
+                ) : <Preview
+                    image={image!}
+                    form={form}
+                    setForm={setForm}
+                    handleFinish={handleFinish}
+                />)
+                : <Final
+                    image={image!}
+                    imageId={imageId!}
+                    redirectUrl={redirectUrl}
+                    resetCreateHandler={resetCreateHandler}
+                />
     );
 
 };

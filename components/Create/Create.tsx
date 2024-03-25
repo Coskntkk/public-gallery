@@ -63,7 +63,7 @@ const Create = () => {
     const resetCreateHandler = () => {
         setIsCreating(true);
         setIsModalOpen(false);
-        setPixels(new Array(100).fill('#ffffff'));
+        setPixels(new Array(256).fill('#ffffff'));
         setForm({ name: '', description: '', author: '' });
     };
 

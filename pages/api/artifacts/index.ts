@@ -8,6 +8,14 @@ type Data = {
     data: any,
     total?: number
 }
+function dataURLtoFile(dataurl: any, filename: any) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     try {
@@ -85,7 +93,9 @@ const createArtifact = async (
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Client-ID ${process.env.CLIENT_ID as string}`);
     var formdata = new FormData();
-    formdata.append("image", `"${req.body.image.split(",")[1]}"`);
+    //Usage example:
+    var file = dataURLtoFile(`data:image/png;base64,${req.body.image.split(",")[1]}`, 'image.png');
+    formdata.append("image", file);
     var requestOptions = {
         method: 'POST',
         headers: myHeaders,
@@ -96,7 +106,9 @@ const createArtifact = async (
     fetch("https://api.imgur.com/3/image", requestOptions as any)
         .then(response => response.json())
         .then(async result => {
+            console.log(result);
             newItem.url = result.data.link
+            console.log(newItem);
             let createdItem = await Artifact.create(newItem)
             res.status(200).json({ success: true, message: 'Image uploaded successfully', data: createdItem._id });
         })
